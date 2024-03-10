@@ -3,7 +3,6 @@ import { useNavigation } from "react-router-dom";
 function SubmitBtn({ text }) {
     const navigation = useNavigation();
     const isSubmitting = navigation.state === 'submitting';
-    if (isSubmitting) {
         return (
             <button
                 type="submit"
@@ -20,8 +19,6 @@ function SubmitBtn({ text }) {
                 }
             </button>
         );
-    }
-    return <h1>test</h1>;
 }
 
 export default SubmitBtn;

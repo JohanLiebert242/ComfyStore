@@ -1,5 +1,7 @@
+import { Header, Navbar } from "../components";
+
 function Landing() {
-    return <h1>Landing page</h1>;
+    return <Navbar />;
 }
 
 export default Landing;

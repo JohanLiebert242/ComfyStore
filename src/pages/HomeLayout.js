@@ -1,9 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
-import { SubmitBtn } from "../components";
+import { SubmitBtn, Header } from "../components";
 
 function HomeLayout() {
     return (
-        <section className="align-element py-20">
+        <section className="align-element">
             <Outlet />
         </section>
     );

@@ -1,6 +1,7 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaMoon, FaBarsStaggered } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
+import NavLinks from "./NavLinks";
 
 function Navbar() {
     return (
@@ -29,7 +30,9 @@ function Navbar() {
                     </div>
                 </div>
                 <div className="nav-center hidden lg:flex">
-                    <ul className="menu menu-horizontal ">nav links</ul>
+                    <ul className="menu menu-horizontal ">
+                        <NavLinks />
+                    </ul>
                 </div>
                 <div className="navbar-end">
                     <NavLink
@@ -38,7 +41,7 @@ function Navbar() {
                     >
                         <div className="indicator">
                             <BsCart3 className="h-6 w-6" />
-                            <span className='badge badge-sm badge-primary indicator-item'>
+                            <span className="badge badge-sm badge-primary indicator-item">
                                 8
                             </span>
                         </div>

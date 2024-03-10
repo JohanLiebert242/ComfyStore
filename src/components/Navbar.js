@@ -11,7 +11,9 @@ const themes = {
 };
 
 const getThemeFromLocalStorage = () => {
-    return localStorage.getItem("theme") || themes.winter; // Phải set default là winter nếu không thì key ban đầu sẽ là undefined
+    
+    // Phải set default là winter nếu không thì key ban đầu sẽ là undefined
+    return localStorage.getItem("theme") || themes.winter; 
 };
 
 const Navbar = () => {

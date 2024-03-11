@@ -1,11 +1,11 @@
 import { Form, Link, useLoaderData } from "react-router-dom";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
+import FormRange from "./FormRange";
+import FormShipping from "./FormShipping";
 
 function Filter() {
     const { meta } = useLoaderData();
-
-    console.log(meta);
 
     return (
         <Form className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
@@ -39,6 +39,20 @@ function Filter() {
                 defaultValue="a-z"
                 size="select-sm"
                 lists={["a-z", "z-a", "high", "low"]}
+            />
+
+            {/* Price Range */}
+            <FormRange
+                label="Select price"
+                name="price-range"
+                size="range-sm"
+            />
+
+            {/* FreeShip */}
+            <FormShipping
+                label="Free shipping"
+                name="shipping"
+                size="checkbox-sm"
             />
 
             {/* Buttons */}

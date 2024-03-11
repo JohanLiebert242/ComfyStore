@@ -11,9 +11,8 @@ const themes = {
 };
 
 const getThemeFromLocalStorage = () => {
-    
     // Phải set default là winter nếu không thì key ban đầu sẽ là undefined
-    return localStorage.getItem("theme") || themes.winter; 
+    return localStorage.getItem("theme") || themes.winter;
 };
 
 const Navbar = () => {
@@ -65,7 +64,6 @@ const Navbar = () => {
                         <input onClick={handleChangeTheme} type="checkbox" />
 
                         <BsSunFill className="swap-on h-4 w-4" />
-
                         <BsMoonFill className="swap-off h-4 w-4" />
                     </label>
 

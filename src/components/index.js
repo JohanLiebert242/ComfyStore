@@ -7,4 +7,5 @@ export { default as ErrorElement} from './ErrorElement';
 export { default as TitleSection} from './TitleSection';
 export { default as FeaturedProductItems} from './FeaturedProductItems';
 export { default as FeaturedProductsSection} from './FeaturedProductsSection';
+export { default as SingleProductItem} from './SingleProductItem';
 

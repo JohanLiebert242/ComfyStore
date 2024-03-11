@@ -14,7 +14,8 @@ import {
     SingleProduct,
 } from "./pages";
 import { ErrorElement } from "./components";
-import {loader as landingLoader} from './pages/Landing';
+import { loader as landingLoader } from "./pages/Landing";
+import { loader as singleProductLoader } from "./pages/SingleProduct";
 
 import "./App.css";
 
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Landing />,
                 errorElement: <ErrorElement />,
-                loader: landingLoader
+                loader: landingLoader,
             },
 
             {
@@ -56,8 +57,10 @@ const router = createBrowserRouter([
             },
 
             {
-                path: "products:/id",
+                path: "products/:id",
                 element: <SingleProduct />,
+                errorElement: <ErrorElement />,
+                loader: singleProductLoader,
             },
         ],
     },

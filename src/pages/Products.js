@@ -15,7 +15,7 @@ export const loader = async () => {
 function Products() {
     return (
         <>
-            {/* <Filter /> */}
+            <Filter />
             <ProductContainer />
             {/* <PaginationContainer/> */}
         </>

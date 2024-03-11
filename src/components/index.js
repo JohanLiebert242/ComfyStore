@@ -7,3 +7,8 @@ export { default as ErrorElement } from "./ErrorElement";
 export { default as TitleSection } from "./TitleSection";
 export { default as FeaturedProductItems } from "./FeaturedProductItems";
 export { default as FeaturedProductsSection } from "./FeaturedProductsSection";
+export { default as Filter } from "./Filter";
+export { default as ProductContainer } from "./ProductContainer";
+export { default as PaginationContainer } from "./PaginationContainer";
+export { default as ProductList } from "./ProductList";
+export { default as ProductGrid } from "./ProductGrid";

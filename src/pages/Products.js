@@ -21,7 +21,7 @@ function Products() {
         <>
             <Filter />
             <ProductContainer />
-            {/* <PaginationContainer/> */}
+            <PaginationContainer/>
         </>
     );
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { formatPrice } from "../utils";
 
-function FormRange({ label, name, size }) {
-    const [price, setPrice] = useState("1");
+function FormRange({ label, name, size, defaultValue }) {
     const step = 1000;
     const maxPrice = 100000;
+    const [price, setPrice] = useState(defaultValue || maxPrice);
 
     return (
         <div className="form-control">
@@ -23,8 +23,10 @@ function FormRange({ label, name, size }) {
                 className={`range range-primary ${size}`}
             />
             <div className="w-full flex justify-between text-xs px-2 mt-2">
-                <span className='font-bold text-md'>0</span>
-                <span className='font-bold text-md'>MAX: {formatPrice(maxPrice)}</span>
+                <span className="font-bold text-md">0</span>
+                <span className="font-bold text-md">
+                    MAX: {formatPrice(maxPrice)}
+                </span>
             </div>
         </div>
     );

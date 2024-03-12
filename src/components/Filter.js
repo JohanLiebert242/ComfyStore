@@ -5,7 +5,9 @@ import FormRange from "./FormRange";
 import FormShipping from "./FormShipping";
 
 function Filter() {
-    const { meta } = useLoaderData();
+    const { meta, params } = useLoaderData();
+
+    const { search, category, company, order, priceRange, shipping } = params;
 
     return (
         <Form className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
@@ -15,12 +17,13 @@ function Filter() {
                 name="search"
                 label="Search Product"
                 size="input-sm"
+                defaultValue={search}
             />
             {/* Category */}
             <FormSelect
                 label="Select category"
                 name="category"
-                defaultValue="all"
+                defaultValue={category}
                 size="select-sm"
                 lists={meta.categories}
             />
@@ -28,7 +31,7 @@ function Filter() {
             <FormSelect
                 label="Select company"
                 name="company"
-                defaultValue="all"
+                defaultValue={company}
                 size="select-sm"
                 lists={meta.companies}
             />
@@ -36,7 +39,7 @@ function Filter() {
             <FormSelect
                 label="Sort by"
                 name="order"
-                defaultValue="a-z"
+                defaultValue={order}
                 size="select-sm"
                 lists={["a-z", "z-a", "high", "low"]}
             />
@@ -44,8 +47,9 @@ function Filter() {
             {/* Price Range */}
             <FormRange
                 label="Select price"
-                name="price-range"
+                name="priceRange"
                 size="range-sm"
+                defaultValue={priceRange}
             />
 
             {/* FreeShip */}
@@ -53,6 +57,7 @@ function Filter() {
                 label="Free shipping"
                 name="shipping"
                 size="checkbox-sm"
+                defaultValue={shipping}
             />
 
             {/* Buttons */}

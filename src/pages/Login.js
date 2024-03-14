@@ -1,6 +1,31 @@
-import { Link, Form } from "react-router-dom";
+import { Link, Form, redirect } from "react-router-dom";
 
 import { FormInput, SubmitBtn } from "../components";
+import { customFetch } from "../utils";
+import { toast } from "react-toastify";
+import { loginUser } from "../features/user/userSlice";
+
+const url = "/auth/local";
+
+// Truyền param là store để có thể access vào dispatch
+// *Có thể console.log(store) để nhìn
+export const action =
+    (store) =>
+    async ({ request }) => {
+        const formData = await request.formData();
+        const data = Object.fromEntries(formData);
+
+        try {
+            const res = await customFetch.post(url, data);
+            store.dispatch(loginUser(res.data));
+            toast.success("Successfully login");
+            return redirect("/");
+        } catch (error) {
+            const message = error?.response?.data?.error?.message;
+            toast.error(message);
+            return null;
+        }
+    };
 
 function Login() {
     return (

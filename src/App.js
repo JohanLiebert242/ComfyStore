@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import {store} from './store';
 import {
     About,
     Cart,
@@ -17,9 +18,12 @@ import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as allProductsLoader} from './pages/Products';
-import { action as registerActions} from './pages/Register';
+import { action as registerAction} from './pages/Register';
+import { action as loginAction} from './pages/Login';
 
 import "./App.css";
+
+
 
 const router = createBrowserRouter([
     {
@@ -71,11 +75,12 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />,
-        action: registerActions
+        action: registerAction
     },
     {
         path: "/login",
         element: <Login />,
+        action: loginAction(store)
     },
 ]);
 

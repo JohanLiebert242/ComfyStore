@@ -17,6 +17,7 @@ import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as allProductsLoader} from './pages/Products';
+import { action as registerActions} from './pages/Register';
 
 import "./App.css";
 
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />,
+        action: registerActions
     },
     {
         path: "/login",

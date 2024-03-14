@@ -8,6 +8,7 @@ import NavLinks from "./NavLinks";
 import { toggleTheme } from "../features/user/userSlice";
 
 const Navbar = () => {
+
     const dispatch = useDispatch();
 
     const handleChangeTheme = () => {

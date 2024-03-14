@@ -7,8 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +15,11 @@ root.render(
         <Provider store={store}>
             <App />
         </Provider>
-        <ToastContainer position="top-center"/>
+        <ToastContainer
+            position="top-center"
+            autoClose={1000}
+            pauseOnHover={false}
+        />
     </React.StrictMode>
 );
 

@@ -1,5 +1,5 @@
 import { formatPrice, generateAmountOptions } from "../utils";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeItem, editItem } from "../features/cart/CartSlice";
 
 function CartItem({
@@ -15,12 +15,19 @@ function CartItem({
     const dollarAmount = formatPrice(price);
     const dispatch = useDispatch();
 
-    const handleRemoveItem = () => {};
+    const handleRemoveItem = () => {
+        dispatch(removeItem({ cartID }));
+    };
 
-    const handleEditAmount = () => {};
+    const handleEditAmount = (e) => {
+        dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
+    };
 
     return (
-        <article className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b border-base-300 pb-6 last:border-b-0">
+        <article
+            key={cartID}
+            className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b border-base-300 pb-6 last:border-b-0"
+        >
             <img
                 src={image}
                 alt={title}

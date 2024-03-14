@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
 function CartList() {
     const cart = useSelector((state) => state.cart);
-    const { cartItems, numItemsInCart } = cart;
+    const { cartItems } = cart;
 
     return (
         <div>

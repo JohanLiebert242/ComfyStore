@@ -3,13 +3,14 @@ import { CartTotal, CheckoutForm, TitleSection } from "../components";
 import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export const loader = (store) => async () => {
-    // console.log(store);
+export const loader = (store) => () => {
     const user = store.getState().userState.user;
+
     if (!user) {
-        toast.error("You must be logged in to access checkout!");
+        toast.warn("You must be logged in to checkout");
         return redirect("/login");
     }
+
     return null;
 };
 

@@ -64,7 +64,8 @@ function Login() {
                 <button
                     onClick={loginAsGuestUser}
                     className="btn btn-secondary btn-block"
-                    type="button"
+                    type="button" // Nếu không xác định type thì nó sẽ là type="submit" 
+                                //-> Khiến cho form bị submit làm gọi cả action function
                 >
                     GUEST USER
                 </button>

@@ -29,7 +29,7 @@ export const action =
                 { data: info },
                 {
                     headers: {
-                        Authorization: `Bearer ${user.token}`,
+                        Authorization: `Bearer ${user.tokens}`,
                     },
                 }
             );
@@ -40,6 +40,9 @@ export const action =
             console.log(error);
             const message = error?.response?.data?.error?.message;
             toast.error(message);
+
+            //Token is expired or unauthorized error
+            if (error.response.status === 401) return redirect("/login");
             return null;
         }
     };

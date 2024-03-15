@@ -42,7 +42,7 @@ export const action =
             toast.error(message);
 
             //Token is expired or unauthorized error
-            if (error.response.status === 401) return redirect("/login");
+            if (error.response.status === 401 || 403) return redirect("/login");
             return null;
         }
     };

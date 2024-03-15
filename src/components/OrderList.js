@@ -32,7 +32,7 @@ function OrderList() {
                             } = order.attributes;
 
                             const date = day(createdAt).format(
-                                "hh:mm a - MM Do, YYYY"
+                                "hh:mm a - MMM Do, YYYY "
                             );
 
                             return (
@@ -41,9 +41,7 @@ function OrderList() {
                                     <td>{address}</td>
                                     <td>{numItemsInCart}</td>
                                     <td>{orderTotal}</td>
-                                    <td className="hidden sm:block">
-                                        {createdAt}
-                                    </td>
+                                    <td className="hidden sm:block">{date}</td>
                                 </tr>
                             );
                         })}

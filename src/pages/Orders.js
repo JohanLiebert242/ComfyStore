@@ -1,5 +1,5 @@
 import { redirect, useLoaderData } from "react-router-dom";
-import { OrderList, PaginationContainer, TitleSection } from "../components";
+import { ComplexPagination, OrderList,TitleSection } from "../components";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
 
@@ -46,7 +46,7 @@ function Orders() {
         <>
             <TitleSection text="Your orders" />
             <OrderList />
-            <PaginationContainer />
+            <ComplexPagination />
         </>
     );
 }

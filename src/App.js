@@ -75,11 +75,13 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />,
+        errorElement: <Error />,
         action: registerAction
     },
     {
         path: "/login",
         element: <Login />,
+        errorElement: <Error />,
         action: loginAction(store)
     },
 ]);

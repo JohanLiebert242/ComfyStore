@@ -7,7 +7,7 @@ const themes = {
 };
 
 const getUserFromLocalStorage = () => {
-    return localStorage.getItem("user") || null;
+    return JSON.parse(localStorage.getItem("user")) || null;
 };
 
 const getThemeFromLocalStorage = () => {

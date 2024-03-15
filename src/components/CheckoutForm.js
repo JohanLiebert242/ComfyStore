@@ -9,13 +9,13 @@ export const action =
     (store) =>
     async ({ request }) => {
         const formData = await request.formData();
-        const { firstName, address } = Object.fromEntries(formData);
+        //Phải lấy đúng key là name vì API đã được tạo như vậy -> nếu sai -> lỗi
+        const { name, address } = Object.fromEntries(formData);
         const user = store.getState().userState.user;
-
-        const { cartItems, orderTotal, numItemsInCart } = store.getState().cart;
+        const { cartItems, numItemsInCart, orderTotal } = store.getState().cart;
 
         const info = {
-            firstName,
+            name,
             address,
             chargeTotal: orderTotal,
             orderTotal: formatPrice(orderTotal),
@@ -38,9 +38,7 @@ export const action =
             return redirect("/orders");
         } catch (error) {
             console.log(error);
-            const message =
-                error?.response?.data?.message ||
-                "There was an error with your order. Please try again.";
+            const message = error?.response?.data?.error?.message;
             toast.error(message);
             return null;
         }
@@ -50,7 +48,9 @@ function CheckoutForm() {
     return (
         <Form method="POST" className="flex flex-col gap-y-4">
             <h3 className="font-medium text-xl">Shipping Information</h3>
-            <FormInput label="First name" type="text" name="firstName" />
+
+            {/* Đặt name của input đúng với api */}
+            <FormInput label="First name" type="text" name="name" />
             <FormInput label="Address" type="text" name="address" />
             <div className="mt-4">
                 <SubmitBtn text="PLACE YOUR ORDER" />

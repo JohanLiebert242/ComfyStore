@@ -2,16 +2,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../features/cart/CartSlice";
 import { logoutUser } from "../features/user/userSlice";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Header() {
     const user = useSelector((state) => state.userState.user);
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         navigate("/");
         dispatch(logoutUser());
         dispatch(clearCart());
+        queryClient.removeQueries();
+
     };
 
     return (

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { clearCart } from "../features/cart/CartSlice";
 
 export const action =
-    (store) =>
+    (store, queryClient) =>
     async ({ request }) => {
         const formData = await request.formData();
         //Phải lấy đúng key là name vì API đã được tạo như vậy -> nếu sai -> lỗi
@@ -33,7 +33,9 @@ export const action =
                     },
                 }
             );
-            
+            //Remove query
+            queryClient.removeQueries("[orders]");
+
             store.dispatch(clearCart());
             toast.success("Order placed successfully");
             return redirect("/orders");

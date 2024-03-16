@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import {store} from './store';
+import { store } from "./store";
 import {
     About,
     Cart,
@@ -17,17 +19,22 @@ import {
 import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
-import { loader as allProductsLoader} from './pages/Products';
-import { loader as checkoutLoader} from './pages/Checkout';
-import { loader as orderLoader} from './pages/Orders';
-import { action as registerAction} from './pages/Register';
-import { action as loginAction} from './pages/Login';
-import { action as checkoutAction} from './components/CheckoutForm';
-
+import { loader as allProductsLoader } from "./pages/Products";
+import { loader as checkoutLoader } from "./pages/Checkout";
+import { loader as orderLoader } from "./pages/Orders";
+import { action as registerAction } from "./pages/Register";
+import { action as loginAction } from "./pages/Login";
+import { action as checkoutAction } from "./components/CheckoutForm";
 
 import "./App.css";
 
-
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 5
+        },
+    },
+});
 
 const router = createBrowserRouter([
     {
@@ -39,7 +46,7 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Landing />,
                 errorElement: <ErrorElement />,
-                loader: landingLoader,
+                loader: landingLoader(queryClient),
             },
 
             {
@@ -56,27 +63,27 @@ const router = createBrowserRouter([
                 path: "checkout",
                 element: <Checkout />,
                 loader: checkoutLoader(store),
-                action: checkoutAction(store)
+                action: checkoutAction(store, queryClient),
             },
 
             {
                 path: "products",
                 element: <Products />,
                 errorElement: <ErrorElement />,
-                loader: allProductsLoader
+                loader: allProductsLoader(queryClient),
             },
             {
                 path: "orders",
                 element: <Orders />,
                 errorElement: <Error />,
-                loader: orderLoader(store)
+                loader: orderLoader(store, queryClient),
             },
 
             {
                 path: "products/:id",
                 element: <SingleProduct />,
                 errorElement: <ErrorElement />,
-                loader: singleProductLoader,
+                loader: singleProductLoader(queryClient),
             },
         ],
     },
@@ -84,18 +91,24 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
         errorElement: <Error />,
-        action: registerAction
+        action: registerAction,
     },
     {
         path: "/login",
         element: <Login />,
         errorElement: <Error />,
-        action: loginAction(store)
+        action: loginAction(store),
     },
 ]);
 
+
+
 function App() {
-    return <RouterProvider router={router}></RouterProvider>;
+    return (
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}></RouterProvider>;
+        </QueryClientProvider>
+    );
 }
 
 export default App;

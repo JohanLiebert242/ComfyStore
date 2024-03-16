@@ -4,8 +4,6 @@ function ComplexPagination() {
     const { meta } = useLoaderData();
     const { page, pageCount } = meta.pagination;
 
-    console.log(meta.pagination);
-
     const { search, pathname } = useLocation();
     const navigate = useNavigate();
 

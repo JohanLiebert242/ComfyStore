@@ -33,6 +33,7 @@ export const action =
                     },
                 }
             );
+            
             store.dispatch(clearCart());
             toast.success("Order placed successfully");
             return redirect("/orders");

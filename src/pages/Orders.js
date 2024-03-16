@@ -3,8 +3,25 @@ import { ComplexPagination, OrderList, TitleSection } from "../components";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
 
+const ordersQuery = (params, user) => {
+    return {
+        queryKey: [
+            "orders",
+            user.username,
+            params.page ? parseInt(params.page) : 1,
+        ],
+        queryFn: () =>
+            customFetch("/orders", {
+                params,
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            }),
+    };
+};
+
 export const loader =
-    (store) =>
+    (store, queryClient) =>
     async ({ request }) => {
         const params = Object.fromEntries([
             ...new URL(request.url).searchParams.entries(),
@@ -17,12 +34,9 @@ export const loader =
         }
 
         try {
-            const res = await customFetch("/orders", {
-                params,
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            });
+            const res = await queryClient.ensureQueryData(
+                ordersQuery(params, user)
+            );
             return { orders: res.data.data, meta: res.data.meta };
         } catch (error) {
             console.log(error);

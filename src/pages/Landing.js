@@ -5,19 +5,23 @@ import { customFetch } from "../utils/index";
 
 const featuredProductsUrl = "/products?featured=true";
 
-export const loader = async () => {
-    const res = await customFetch(featuredProductsUrl);
+const featuredProductsQuery = {
+    queryKey: ["featuredProducts"],
+    queryFn: () => customFetch(featuredProductsUrl),
+};
+
+export const loader = (queryClient) => async () => {
+    const res = await queryClient.ensureQueryData(featuredProductsQuery);
     const featuredProducts = res.data.data;
 
     return { featuredProducts };
 };
 
 function Landing() {
-
     return (
         <>
             <Hero />
-            <FeaturedProductsSection/>
+            <FeaturedProductsSection />
         </>
     );
 }
